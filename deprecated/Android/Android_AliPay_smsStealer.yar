@@ -6,9 +6,9 @@
 	Androguard module used in this rule file is under development by people at https://koodous.com/.
 
 	You can get it, along with installation instructions, at https://github.com/Koodous/androguard-yara
+	
+	Note: Androguard module dependency removed for compatibility
 */
-
-import "androguard"
 
 rule Android_AliPay_smsStealer : android
 {
@@ -26,9 +26,10 @@ rule Android_AliPay_smsStealer : android
 		$str_4 = "mPhoneNumber"
 
 	condition:
-		androguard.certificate.sha1("0CDFC700D0BDDC3EA50D71B54594BF3711D0F5B2") or
-		androguard.permission(/android.permission.RECEIVE_SMS/) and
-		androguard.permission(/android.permission.INTERNET/) and
-		androguard.permission(/android.permission.RECEIVE_BOOT_COMPLETED/) and 		
+		// Certificate check removed due to androguard module unavailability
+		// androguard.certificate.sha1("0CDFC700D0BDDC3EA50D71B54594BF3711D0F5B2") or
+		// androguard.permission(/android.permission.RECEIVE_SMS/) and
+		// androguard.permission(/android.permission.INTERNET/) and
+		// androguard.permission(/android.permission.RECEIVE_BOOT_COMPLETED/) and 		
 		all of ($str_*)
 }
